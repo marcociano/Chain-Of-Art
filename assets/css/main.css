@@ -2406,7 +2406,7 @@ pre code {
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
-  background-color: #fff;
+  background-color: #6c757d;
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
@@ -2433,7 +2433,7 @@ pre code {
 /* line 14, node_modules/bootstrap/scss/mixins/_forms.scss */
 .form-control:focus {
   color: #495057;
-  background-color: #fff;
+  background-color: #6c757d;
   border-color: #80bdff;
   outline: 0;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -2464,14 +2464,14 @@ pre code {
 
 /* line 48, node_modules/bootstrap/scss/_forms.scss */
 .form-control:disabled, .form-control[readonly] {
-  background-color: #e9ecef;
+  background-color: #6c757d;
   opacity: 1;
 }
 
 /* line 57, node_modules/bootstrap/scss/_forms.scss */
 select.form-control:focus::-ms-value {
   color: #495057;
-  background-color: #fff;
+  background-color: #6c757d;
 }
 
 /* line 69, node_modules/bootstrap/scss/_forms.scss */
