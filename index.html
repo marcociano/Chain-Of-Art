@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 
 <head>
     <meta charset="utf-8">
@@ -10,13 +10,16 @@
         rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.min.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
-    <link rel="stylesheet" href="assets/css/carousel.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+
 </head>
 
 <body>
     <div class="nav-main">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
+                <img src="assets/img/logopng.png" style="height: 150px; width: 150px;">
                 <a class="navbar-brand font-weight-bold" href="index.html">Chain Of Art</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +31,7 @@
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="project.html">Project</a>
+                            <a class="nav-link" href="#visualizza_quadri">Quadri</a>
                         </li>
 
                         <li class="nav-item">
@@ -43,171 +46,135 @@
     <!--end:Navigation -->
     <main role="main">
         <section class="intro">
+            
             <div class="container">
+                
                 <div class="row d-flex  align-items-start">
                     <div class="col-md-11">
-                        <h1 class="display-3">Chain of Art: l'Arte Digitale tra<br> Blockchain &amp; e Web 3.0</h1>
+                        <h1 class="display-3">Chain of Art: l'Arte Digitale tra<br> Blockchain &amp; Web 3.0</h1>
+                        
                     </div>
+                    
                 </div>
             </div>
         </section>
         <!--end:Intro -->
-        <section class="space-md">
-            <!-- portfolio -->
-            <div id="portfolio" class="container">
-                <div id="portfolio-filters">
-                    <ul id="filters" class="p-0">
-                        <li><a href="*" class="active">Mostra tutto</a></li>
-                        <li><a href=".digital">AI Art</a></li>
-                        <li><a href=".branding">Cubismo</a></li>
-                        <li><a href=".campaigns">Volti</a></li>
-                    </ul>
-                </div>
-                <div class="grid" data-cols="3" data-margin="0" data-height="1"
-                    data-masonry='{ "columnWidth": 200, "itemSelector": ".entry" }'>
-                    <!-- entry -->
-                    <div class="entry work-entry branding">
-                        <a href="project.html">
-                            <div class="entry-image imageBG" data-img="./assets/img/cub_1.png">
-                            </div>
-                            <div class="work-entry-hover">
-                                <div class="work-entry-content">
-                                    <div class="work-entry-title">Facce e Frazioni</div>
-                                    <div class="work-entry-cat">di Alessandro Vibrante</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- end:entry -->
-                    <div class="entry work-entry digital">
-                        <a href="project.html">
-                            <div class="entry-image imageBG" data-img="./assets/img/img_ia_1.png">
-                            </div>
-                            <div class="work-entry-hover">
-                                <div class="work-entry-content">
-                                    <div class="work-entry-title">Sinfonia di Spirali Cosmiche</div>
-                                    <div class="work-entry-cat">di Marco Tessitore con l'impiego dell'IA</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- end:entry -->
-                    <div class="entry work-entry campaigns">
-                        <a href="project.html">
-                            <div class="entry-image imageBG" data-img="./assets/img/cub_3.png">
-                            </div>
-                            <div class="work-entry-hover">
-                                <div class="work-entry-content">
-                                    <div class="work-entry-title">Geometrie dell'Essere</div>
-                                    <div class="work-entry-cat">di Vittorio Formale</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- end:entry -->
-                    <div class="entry work-entry branding">
-                        <a href="project.html">
-                            <div class="entry-image imageBG" data-img="./assets/img/cub_4.png">
-                            </div>
-                            <div class="work-entry-hover">
-                                <div class="work-entry-content">
-                                    <div class="work-entry-title">Equilibrio Astratto</div>
-                                    <div class="work-entry-cat">di Silvio Baratta</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- end:entry -->
-                    <div class="entry work-entry campaigns h2">
-                        <a href="project.html">
-                            <div class="entry-image imageBG"
-                                data-img="./assets/img/cub_5.png"></div>
-                            <div class="work-entry-hover">
-                                <div class="work-entry-content">
-                                    <div class="work-entry-title">Volto della Mente Colorata</div>
-                                    <div class="work-entry-cat">di Gioele Patternato</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- end:entry -->
-                    <div class="entry work-entry branding digital">
-                        <a href="project.html">
-                            <div class="entry-image imageBG" data-img="./assets/img/img_ia_2.png">
-                            </div>
-                            <div class="work-entry-hover">
-                                <div class="work-entry-content">
-                                    <div class="work-entry-title">Alba Dorata nel Paese delle Meraviglie</div>
-                                    <div class="work-entry-cat">di Leonardo Luminoso con l'impiego dell'IA</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- end:entry -->
-                    <div class="entry work-entry digital">
-                        <a href="project.html">
-                            <div class="entry-image imageBG"
-                                data-img="./assets/img/img_ia_3.png"></div>
-                            <div class="work-entry-hover">
-                                <div class="work-entry-content">
-                                    <div class="work-entry-title">Tempesta Solare sulle Cime Eterne</div>
-                                    <div class="work-entry-cat">di Flavio Sogno con l'impiego dell'IA</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- end:entry -->
-                    <div class="entry work-entry brading">
-                        <a href="project.html">
-                            <div class="entry-image imageBG"
-                                data-img="./assets/img/cub_8.png"></div>
-                            <div class="work-entry-hover">
-                                <div class="work-entry-content">
-                                    <div class="work-entry-title">Allegoria di Gioco</div>
-                                    <div class="work-entry-cat">Bruno Elementare</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- end:entry -->
 
-                </div>
-            </div>
-            <!-- /end:portfolio -->
-            <!--Carousel-->
-            <div class="slide-container">
-                <div class="slide-content">
-                    <div class="card-wrapper">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="card-image">
-                                    <img src="./assets/img/cub_1.png" alt="" class="card-img">
+        <!-- entry -->
+        <div class="card_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 id="visualizza_quadri">Selezione del quadro</h2>
+                        <p>Seleziona il quadro che desideri acquistare</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="owl-carousel slider_carousel">
+                            <div class="card_box">
+                                <img class="img-fluid w-100" src="assets/img/cub_1.png" alt="">
+                                <div class="card_text">
+                                    <h4>Facce e Frazioni</h4>
+                                    <p>Alessandro Vibrante</p>
+                                    <button type="submit" class="btn btn-light font-weight-bold">Acquista</button>
                                 </div>
                             </div>
-                            
-                            <div class="card-content">
-                                <h2 class="name">Quadro n1</h2>
-                                <p class="description">Nome artista
-
-                                <button class="button">Compra</button>
+                            <div class="card_box">
+                                <img class="img-fluid w-100" src="assets/img/img_ia_1.png" alt="">
+                                <div class="card_text">
+                                    <h4>Sinfonia di Spirali Cosmiche</h4>
+                                    <p>Marco Tessitore con l'impiego dell'IA</p>
+                                    <button type="submit" class="btn btn-light font-weight-bold">Acquista</button>
+                                </div>
+                            </div>
+                            <div class="card_box">
+                                <img class="img-fluid w-100" src="assets/img/cub_3.png" alt="">
+                                <div class="card_text">
+                                    <h4>Geometrie dell'Essere</h4>
+                                    <p>Vittorio Formale</p>
+                                    <button type="submit" class="btn btn-light font-weight-bold">Acquista</button>
+                                </div>
+                            </div>
+                            <div class="card_box">
+                                <img class="img-fluid w-100" src="assets/img/cub_4.png" alt="">
+                                <div class="card_text">
+                                    <h4>Equilibrio Astratto</h4>
+                                    <p>Silvio Baratta</p>
+                                    <button type="submit" class="btn btn-light font-weight-bold">Acquista</button>
+                                </div>
+                            </div>
+                            <div class="card_box">
+                                <img class="img-fluid w-100" src="assets/img/cub_5.png" alt="">
+                                <div class="card_text">
+                                    <h4>Volto della Mente Colorata</h4>
+                                    <p>Gioele Patternato</p>
+                                    <button type="submit" class="btn btn-light font-weight-bold">Acquista</button>
+                                </div>
+                            </div>
+                            <div class="card_box">
+                                <img class="img-fluid w-100" src="assets/img/img_ia_2.png" alt="">
+                                <div class="card_text">
+                                    <h4>Alba Dorata nel Paese delle Meraviglie</h4>
+                                    <p>Leonardo Luminoso con l'impiego dell'IA</p>
+                                    <button type="submit" class="btn btn-light font-weight-bold">Acquista</button>
+                                </div>
+                            </div>
+                            <div class="card_box">
+                                <img class="img-fluid w-100" src="assets/img/img_ia_3.png" alt="">
+                                <div class="card_text">
+                                    <h4>Tempesta Solare sulle Cime Eterne</h4>
+                                    <p>Flavio Sogno con l'impiego dell'IA</p>
+                                    <button type="submit" class="btn btn-light font-weight-bold">Acquista</button>
+                                </div>
+                            </div>
+                            <div class="card_box">
+                                <img class="img-fluid w-100" src="assets/img/cub_8.png" alt="">
+                                <div class="card_text">
+                                    <h4>Allegoria di Gioco</h4>
+                                    <p>Bruno Elementare</p>
+                                    <button type="submit" class="btn btn-light font-weight-bold">Effettua l'acquisto</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--End Carousel-->
-
-            
-        </section>
+        </div>
+        <!-- /end:portfolio -->
     </main>
-
     <script src="assets/js/main.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+        function slider_carouselInit() {
+            $('.owl-carousel.slider_carousel').owlCarousel({
+                dots: false,
+                loop: true,
+                margin: 30,
+                stagePadding: 2,
+                autoplay: false,
+                nav: true,
+                navText: ["<i class='far fa-arrow-alt-circle-left'></i>", "<i class='far fa-arrow-alt-circle-right'></i>"],
+                autoplayTimeout: 1500,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2,
+                    },
+                    992: {
+                        items: 5
+                    }
+                }
+            });
+        }
+        slider_carouselInit();
+    </script>
 
     <hr style="background-color: white;">
     <div>
         <h1 style="text-align: center;">Procedi con l'acquisto</h1>
-
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -228,14 +195,16 @@
                                 <option value="fondazione5">UNICEF</option>
                                 <option value="fondazione6">ActionAid</option>
                                 <option value="fondazione7">Amnesty International</option>
-                                
+
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="nQuadro" placeholder="Nome Quadro" name="nQuadro" disabled>
+                            <input type="text" class="form-control" id="nQuadro" placeholder="Nome Quadro"
+                                name="nQuadro" disabled>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="price" placeholder="Prezzo" name="price" disabled>
+                            <input type="text" class="form-control" id="price" placeholder="Prezzo" name="price"
+                                disabled>
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-light font-weight-bold">Effettua l'acquisto</button>
@@ -249,9 +218,9 @@
 <hr style="background-color: white;">
 <section class="page-section" id="quadriacquistati">
     <div class="container">
-            <h2 style=" text-align: center;">Quadri Acquistati</h2>
-       <br>
-       <br>
+        <h2 style=" text-align: center;">Quadri Acquistati</h2>
+        <br>
+        <br>
         <div class="row" id="quadriAcquistatiTabella">
             <div class="col-12">
                 <table class="table table-image table-hover">
