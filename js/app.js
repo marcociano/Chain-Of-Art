@@ -33,16 +33,15 @@ App = {
     },
 
     initContract: function () {
-        $.getJSON('PetitionContract.json', function (data) {
+        $.getJSON('PaintContract.json', function (data) {
             // Get the necessary contract artifact file and instantiate it with truffle-contract
-            var PetitionArtifact = data;
-            App.contracts.PetitionContract = TruffleContract(PetitionArtifact);
+            var paintArtifact = data;
+            App.contracts.PaintContract = TruffleContract(paintArtifact);
 
             // Set the provider for our contract
-            App.contracts.PetitionContract.setProvider(App.web3Provider);
+            App.contracts.PaintContract.setProvider(App.web3Provider);
 
-            loadPetitions();
-            loadSignedPetitions();
+            loadPurchasedPaint();
         });
 
         return App.bindEvents();
