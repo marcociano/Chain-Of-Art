@@ -31,14 +31,27 @@ contract AcquistoQuadri {
     }
 
     function aggiungiQuadro(string memory nome, string memory autore, uint256 prezzo) external soloProprietario {
+        /*Verifico che non esiste già un quadro con lo stesso id*/
+        require(bytes(quadri[prossimoIDQuadro].nome).length == 0, "Un quadro con questo ID esiste già");
+
         quadri[prossimoIDQuadro] = Quadro(prossimoIDQuadro, nome, autore, prezzo, true);
         prossimoIDQuadro++;
     }
 
     function acquistaQuadro(uint256 idQuadro) external payable {
         Quadro storage quadro = quadri[idQuadro];
+        
+        // Gestione dell'esistenza del quadro
+        require(bytes(quadro.nome).length > 0, "Il quadro non esiste");
+
         require(quadro.disponibile, "Il quadro non è disponibile");
         require(msg.value >= quadro.prezzo, "Importo inviato non sufficiente per acquistare il quadro");
+
+        //Gestione fondi in eccesso
+        uint256 rimborso = msg.value - quadro.prezzo;
+        if (rimborso > 0) {
+            payable(msg.sender).transfer(rimborso);
+        }
 
         // Trasferisci i fondi al proprietario
         proprietario.transfer(quadro.prezzo);
