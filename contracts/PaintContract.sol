@@ -26,13 +26,13 @@ contract AcquistoQuadri {
     }
 
     modifier soloProprietario() {
-        require(msg.sender == proprietario, "Solo il proprietario può chiamare questa funzione");
+        require(msg.sender == proprietario, "Solo il proprietario puo' chiamare questa funzione");
         _;
     }
 
     function aggiungiQuadro(string memory nome, string memory autore, uint256 prezzo) external soloProprietario {
         /*Verifico che non esiste già un quadro con lo stesso id*/
-        require(bytes(quadri[prossimoIDQuadro].nome).length == 0, "Un quadro con questo ID esiste già");
+        require(bytes(quadri[prossimoIDQuadro].nome).length == 0, "Un quadro con questo ID esiste gia'");
 
         quadri[prossimoIDQuadro] = Quadro(prossimoIDQuadro, nome, autore, prezzo, true);
         prossimoIDQuadro++;
@@ -44,7 +44,7 @@ contract AcquistoQuadri {
         // Gestione dell'esistenza del quadro
         require(bytes(quadro.nome).length > 0, "Il quadro non esiste");
 
-        require(quadro.disponibile, "Il quadro non è disponibile");
+        require(quadro.disponibile, "Il quadro non e' disponibile");
         require(msg.value >= quadro.prezzo, "Importo inviato non sufficiente per acquistare il quadro");
 
         //Gestione fondi in eccesso
