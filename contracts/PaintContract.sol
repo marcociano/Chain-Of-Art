@@ -7,6 +7,7 @@ contract AcquistoQuadri {
     address public proprietario;
     uint256 public prossimoIDQuadro;
 
+    //Definizione della struttura di un quadro
     struct Quadro {
         uint256 id;
         string nome;
