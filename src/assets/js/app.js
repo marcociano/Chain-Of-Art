@@ -63,10 +63,51 @@ App = {
 
     // Funzione per gestire l'acquisto quando si clicca su 'Acquista'
     handlePurchase: function (event) {
-        event.preventDefault();
-        // TO DO (logica per l'acquisto del quadro)
-        // ...
-    },
+    // Previene il comportamento di default del browser all'evento (es. invio di un form)
+    event.preventDefault();
+    
+    // Recupera l'ID del prodotto dall'elemento che ha scatenato l'evento (es. un bottone)
+    var paintId = parseInt($(event.target).data('id'));
+
+    // Variabile per memorizzare l'istanza del contratto
+    var paintInstance;
+
+    // Ottiene gli account Ethereum disponibili nel browser dell'utente
+    web3.eth.getAccounts(function (error, accounts){
+        // Se c'è un errore, lo stampa nella console
+        if(error){
+            console.log(error);
+        }
+
+        // Utilizza il primo account disponibile
+        var account = accounts[0];
+
+        // Ottiene l'istanza del contratto PaintContract già distribuito
+        App.contracts.PaintContract.deployed().then(function (instance){
+
+            // Memorizza l'istanza del contratto
+            paintInstance = instance;
+
+            // Chiama la funzione completePurchase del contratto, passando l'ID del prodotto e l'account mittente
+            return paintInstance.completePurchase(paintId, { from: account });
+        }).then(function (result){
+            // Mostra un messaggio di successo e ricarica la pagina se l'acquisto è completato
+            alert("Acquisto effettuato");
+            window.location.reload();
+        }).catch(function(err){
+            // Gestisce gli errori durante l'acquisto
+            if (err.message.includes("Hai già completato l'acquisto")){
+                // Se l'acquisto è già stato completato, mostra un messaggio specifico
+                alert("Acquisto non effettuato perché già completato");
+            }else{
+                // Altrimenti, mostra un messaggio di errore generico
+                alert("Acquisto non effettuato");
+                console.log(err.message);
+            }
+        });
+    });
+},
+
 
     // Funzione per gestire l'azione quando si clicca su 'Effettua l'acquisto'
     completePurchase: function (event) {
