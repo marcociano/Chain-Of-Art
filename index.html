@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=chrome">
     <title>Chain Of Art</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
         rel="stylesheet">
@@ -73,25 +73,28 @@
                         <h2 id="visualizza_quadri">Selezione del quadro</h2>
                         <p>Seleziona il quadro che desideri acquistare</p>
                     </div>
-                    <div class="col-12">
+                    <div id="paintsRow" class="row">
+                        <!--Load of paints-->
+                       </div>
+                    <div class="col-12" id="paints-template">
                         <div class="owl-carousel slider_carousel">
                             <div class="card_box">
-                                <img class="img-fluid w-100" src="assets/img/ai1.jpeg" alt="">
+                                <img class="img-fluid w-100 paint-image" src="assets/img/ai1.jpeg" alt="">
                                 <div class="card_text">
-                                    <h4>Distese stellate</h4>
-                                    <p>Alessandro Vibrante</p>
-                                    <p><strong><em style="color: #40B9F7;">0,33527633954871 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_1" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
-
+                                    <h4 class="paint-title">Distese stellate</h4>
+                                    <p class="artist-name">Alessandro Vibrante</p>
+                                    <p class="paint-price"><strong><em style="color: #40B9F7;">0,33527633954871 ETH</em></strong></p>
+                                    <button type="submit" class="btn btn-light font-weight-bold purchase" data-id="0" id="pulsante_sel_1" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button class="btn btn-success" style="background-color: rgba(36, 110, 147, 0.5); color: black;" type="button" disabled>Acquistato</button>
                                 </div>
                             </div>
-                            <div class="card_box">
+                        <!--<div class="card_box">
                                 <img class="img-fluid w-100" src="assets/img/img_ia_1.png" alt="">
                                 <div class="card_text">
                                     <h4>Sinfonia di Spirali Cosmiche</h4>
                                     <p>Marco Tessitore</p>
                                     <p><strong><em style="color: #40B9F7;">0,43106957941977003 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_2" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold"  id="pulsante_sel_2" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -100,7 +103,7 @@
                                     <h4>Il giorno</h4>
                                     <p>Vittorio Formale</p>
                                     <p><strong><em style="color: #40B9F7;">0,263431409645415 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_3" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_3" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -109,7 +112,7 @@
                                     <h4>Equilibrio Astratto</h4>
                                     <p>Silvio Baratta</p>
                                     <p><strong><em style="color: #40B9F7;">0,47896619935530005 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_4" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_4" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -118,7 +121,7 @@
                                     <h4>L'Eden</h4>
                                     <p>Gioele Patternato</p>
                                     <p><strong><em style="color: #40B9F7;">0,22990377569054402 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_5" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_5" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -127,7 +130,7 @@
                                     <h4>Alba Dorata nel Paese delle Meraviglie</h4>
                                     <p>Leonardo Luminoso</p>
                                     <p><strong><em style="color: #40B9F7;">0,14368985980659002 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_6" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_6" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -136,7 +139,7 @@
                                     <h4>Tempesta Solare sulle Cime Eterne</h4>
                                     <p>Flavio Sogno</p>
                                     <p><strong><em style="color: #40B9F7;">0,153269183793696 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_7" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_7" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -145,7 +148,7 @@
                                     <h4>Allegria del Villaggio</h4>
                                     <p>Bruno Elementare</p>
                                     <p><strong><em style="color: #40B9F7;">0,47417653736174703 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_8" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_8" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -154,7 +157,7 @@
                                     <h4>Libertà</h4>
                                     <p>Angela Romano</p>
                                     <p><strong><em style="color: #40B9F7;">0,47896619935530005 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_9" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_9" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -163,7 +166,7 @@
                                     <h4>Fioritura del Sentimento</h4>
                                     <p>Francesco Prete</p>
                                     <p><strong><em style="color: #40B9F7;">0,41670059343911103 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_10" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_10" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
                             </div>
                             <div class="card_box">
@@ -172,56 +175,15 @@
                                     <h4>Il volo</h4>
                                     <p>Luca Cecchino</p>
                                     <p><strong><em style="color: #40B9F7;">0,37215673689906814 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_acq_11" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button type="submit" class="btn btn-light font-weight-bold" id="pulsante_sel_11" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Seleziona</button>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <div>
-        <h1 style="text-align: center; color: #DBB962;">Procedi con l'acquisto</h1>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="contact-form mt-5">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="name" placeholder="Nome acquirente" name="fname">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="surname" placeholder="Cognome acquirente" name="lname">
-                        </div>
-                        <div class="form-group">
-                            <label for="foundation">Seleziona la fondazione a cui vuoi devolvere l'importo del quadro:</label>
-                            <select class="form-control" id="foundation" name="foundation">
-                                <option value="fondazione1">Medici Senza Frontiere</option>
-                                <option value="fondazione2">Save the Children</option>
-                                <option value="fondazione3">Croce Rossa Internazionale</option>
-                                <option value="fondazione4">World Wildlife Found</option>
-                                <option value="fondazione5">UNICEF</option>
-                                <option value="fondazione6">ActionAid</option>
-                                <option value="fondazione7">Amnesty International</option>
-
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="nQuadro" placeholder="Nome Quadro"
-                                name="nQuadro" disabled>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="price" placeholder="Prezzo" name="price"
-                                disabled>
-                        </div>
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-light font-weight-bold">Effettua l'acquisto</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 </body>
 <br>
 <br>
@@ -239,7 +201,7 @@
                             <th scope="col" style="color: white;">QUADRO</th>
                             <th scope="col" style="color: white;">TITOLO QUADRO</th>
                             <th scope="col" style="color: white;">PREZZO</th>
-                            <th scope="col" style="color: white;">NOME ACQUIRENTE</th>
+                            <th scope="col" style="color: white;">ARTISTA</th>
                             <th scope="col" style="color: white;">FONDAZIONE BENEFICIARIA</th>
                         </tr>
                     </thead>

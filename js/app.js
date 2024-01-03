@@ -3,7 +3,20 @@ App = {
     contracts: {},
 
     init: async function () {
-       
+       $.getJSON('../paints.json', function(data){
+        var paintsRow = $('#paintsRow');
+        var paintsTemplate = $('#paints-template');
+
+        for(i=0; i< data.length; i++) {
+            paintsTemplate.find('.paint-name').text(data[i].nome);
+            paintsTemplate.find('paint-image').attr('src', data[i].immagine);
+            paintsTemplate.find('.artist-name').text(data[i].artista);
+            paintsTemplate.find('.paint-price').text(data[i].prezzo);
+            paintsTemplate.find('.purchase').attr('data-id', data[i].id);
+
+            paintsRow.append(paintsTemplate.html());
+        }
+       });
         return await App.initWeb3();
     },
 
@@ -41,7 +54,7 @@ App = {
             // Set the provider for our contract
             App.contracts.PaintContract.setProvider(App.web3Provider);
 
-            loadPurchasedPaint();
+            loadPaint();
         });
 
         return App.bindEvents();
@@ -50,17 +63,16 @@ App = {
 
 
     bindEvents: function () {
-        $(document).on('click', '.btn-sign', App.handleSign);
-        $(document).on('click', '.btn-addPetition', App.handleAddPetition);
+        $(document).on('click', '.purchase', App.handlePurchase);
     },
 
     // Handle petition signing
-    handleSign: function (event) {
+    handlePurchase: function (event) {
         event.preventDefault();
 
-        var petitionId = parseInt($(event.target).data('id'));
+        var paintId = parseInt($(event.target).data('id'));
 
-        var petitionInstance;
+        var paintInstance;
 
         web3.eth.getAccounts(function (error, accounts) {
             if (error) {
@@ -69,78 +81,26 @@ App = {
 
             var account = accounts[0];
 
-            App.contracts.PetitionContract.deployed().then(function (instance) {
-                petitionInstance = instance;
+            App.contracts.PaintContract.deployed().then(function (instance) {
+                PaintContract = instance;
 
                 // Execute sign as a transaction by sending account
-                return petitionInstance.signPetition(petitionId, { from: account });
+                return paintInstance.purchasePainting(paintId, { from: account });
             }).then(function (result) {
-                alert("Petizione firmata");
+                alert("Quadro acquistato");
                  window.location.reload();
             }).catch(function (err) {
-                if (err.message.includes("You have already signed this petition")) {
-                    alert("Petizione non firmata: Hai già firmato questa petizione");
+                if (err.message.includes("Hai già acquistato questo quadro!")) {
+                    alert("Hai gia' acquistato questo quadro, acquistane un altro");
                 } else {
-                    alert("Petizione non firmata");
+                    alert("Errore: Quadro non acquistato");
                     console.log(err.message);
                 }
             });
         });
     },
 
-    // Handle adding a new petition
-    handleAddPetition: function (event) {
-        event.preventDefault();
-
-        var title = titleInput.value;
-        var category = categoryInput.value;
-        var organizer = organizerInput.value;
-        var targetSignatures = targetSignaturesInput.value;
-        var numSignatures = 0;
-        var image = imageInput.value;
-
-        // Verifica se almeno uno dei campi è vuoto
-        if (title === '' || category === '' || organizer === '' || targetSignatures === '' || image === '') {
-            alert("Inserisci tutti i campi!");
-            return; // Esce dalla funzione in caso di campi vuoti
-        }
-        web3.eth.getAccounts(function (error, accounts) {
-            if (error) {
-                console.log(error);
-            }
-
-            var account = accounts[0];
-
-            App.contracts.PetitionContract.deployed().then(function (instance) {
-                petitionInstance = instance;
-
-                return petitionInstance.counterPetition();
-            }).then(function (counterpetitions) {
-                console.log(counterpetitions);
-
-                var petitionId = parseInt(counterpetitions) + 1;
-                console.log(petitionId);
-
-                return petitionInstance.createPetition(petitionId, title, organizer, image, category, targetSignatures, numSignatures, { from: account });
-            }).then(function (result) {
-                alert("Petizione aggiunta!");
-                // Resetta i campi del form
-    		titleInput.value = '';
-    		categoryInput.value = '';
-    		organizerInput.value = '';
-    		targetSignaturesInput.value = '';
-    		imageInput.value = '';
-                window.location.reload();
-            }).catch(function (err) {
-                alert("Petizione non aggiunta!");
-                console.log(err.message);
-            });
-        });
-    }
-
-
 };
-
 
 
 
@@ -151,54 +111,49 @@ $(function () {
     });
 });
 
-// Load all petitions
-function loadPetitions() {
-    let petitionInstance;
-    var petitionRow = $('#petitionRow');
-    var petitionTemplate = $('#petitionTemplate');
+// Load all peints
+function loadPaint() {
+    let paintInstance;
+    var paintsRow = $('#paintsRow');
+    var paintsTemplate = $('#paints-template');
 
     web3.eth.getAccounts(function (error, accounts) {
         if (error) {
             console.log(error);
         }
 
-        App.contracts.PetitionContract.deployed().then(function (instance) {
-            petitionInstance = instance;
+        App.contracts.PaintContract.deployed().then(function (instance) {
+            paintInstance = instance;
 
             var account = accounts[0];
 
-            return petitionInstance.counterPetition();
-        }).then(function (counterpetitions) {
-            console.log(counterpetitions);
+            return paintInstance.counterPaints();
+        }).then(function (counterpaints) {
+            console.log(counterpaints);
 
-            for (var i = 1; i <= counterpetitions; i++) {
-                petitionInstance.petitions(i).then(function (petition) {
-                    var id = petition[0];
-                    var title = petition[1];
-                    var organizer = petition[2];
-                    var image = petition[3];
-                    var category = petition[4];
-                    var targetSignatures = petition[5];
-                    var numSignatures = petition[6];
-                    var active = petition[7];
-
-                    petitionTemplate.find('.title').text(title);
-                    petitionTemplate.find('.organizer').text(organizer);
-                    petitionTemplate.find('img').attr('src', image);
-                    petitionTemplate.find('.numSignatures').text(numSignatures);
-                    petitionTemplate.find('.targetSignatures').text(targetSignatures);
-                    petitionTemplate.find('.category').text(category);
+            for (var i = 1; i <= counterpaints; i++) {
+                paintInstance.paint(i).then(function (paint) {
+                    var id = paint[0];
+                    var nome = paint[1];
+                    var immagine = paint[2];
+                    var artista = paint[3];
+                    var prezzo = paint[4];
+                
+                    paintsTemplate.find('.paint-name').text(nome);
+                    paintsTemplate.find('.paint-image').attr('src', immagine);
+                    paintsTemplate.find('.artist-name').text(artista);
+                    paintsTemplate.find('.paint-price').text(prezzo);
 
                     if (active) {
-                        petitionTemplate.find('.btn-sign').show();
-                        petitionTemplate.find('.btn-success').hide();
-                        petitionTemplate.find('.btn-sign').attr('data-id', id);
+                        paintsTemplate.find('.purchase').show();
+                        paintsTemplate.find('.btn-success').hide();
+                        paintsTemplate.find('.purchase').attr('data-id', id);
                     } else {
-                        petitionTemplate.find('.btn-sign').hide();
-                        petitionTemplate.find('.btn-success').show();
+                        paintsTemplate.find('.purchase').hide();
+                        paintsTemplate.find('.btn-success').show();
                     }
 
-                    petitionRow.append(petitionTemplate.html());
+                    paintsRow.append(paintsTemplate.html());
                 });
             }
         }).catch(function (err) {
@@ -207,7 +162,7 @@ function loadPetitions() {
         });
     });
 }
-
+/*
 // Load signed petitions for the current account
 function loadSignedPetitions() {
     let petitionInstance;
@@ -262,5 +217,5 @@ function loadSignedPetitions() {
         });
     });
 }
-
+*/
 

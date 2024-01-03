@@ -1,5 +1,6 @@
-var paintContract = artifacts.require("./PaintContract.sol");
+var PaintContract = artifacts.require("PaintContract");
 
 module.exports = function(deployer) {
-  deployer.deploy(paintcontract);
+  deployer.deploy(PaintContract);
+
 };
