@@ -1,0 +1,79 @@
+[
+  {
+    "id": 0,
+    "nome": "Distese Stellate",
+    "immagine": "img/ai1.jpeg",
+    "artista": "Alessandro Vibrante",
+    "prezzo": "0.33527633954871"
+  },
+  {
+    "id": 1,
+    "nome": "Sinfonia di Spirali Cosmiche",
+    "immagine": "img/img_ia_1.png",
+    "artista": "Marco Tessitore",
+    "prezzo": "0.43106957941977003"
+  },
+  {
+    "id": 2,
+    "nome": "Il giorno",
+    "immagine": "img/ai2.jpeg",
+    "artista": "Vittorio Formale",
+    "prezzo": "0.263431409645415"
+  },
+  {
+    "id": 3,
+    "nome": "Equilibrio Astratto",
+    "immagine": "img/ai3.jpeg",
+    "artista": "Silvio Baratta",
+    "prezzo": "0.47896619935530005"
+  },
+  {
+    "id": 4,
+    "nome": "L'Eden",
+    "immagine": "img/ai4.jpeg",
+    "artista": "Gioele Patternato",
+    "prezzo": "0.22990377569054402"
+  },
+  {
+    "id": 5,
+    "nome": "Alba dorata nel paese",
+    "immagine": "img/img_ia_2.png",
+    "artista": "Leonardo Luminoso",
+    "prezzo": "0.14368985980659002"
+  },
+  {
+    "id": 6,
+    "nome": "Tempesta Solare sulle Cime Eterne",
+    "immagine": "img/img_ia_3.png",
+    "artista": "Flavio Sogno",
+    "prezzo": "0.153269183793696"
+  },
+  {
+    "id": 7,
+    "nome": "Allegria del Villaggio",
+    "immagine": "img/ai5.jpeg",
+    "artista": "Bruno Elementare",
+    "prezzo": "0.47417653736174703"
+  },
+  {
+    "id": 8,
+    "nome": "Libertà",
+    "immagine": "img/ai6.jpeg",
+    "artista": "Angela Romano",
+    "prezzo": "0.47896619935530005"
+  },
+  {
+    "id": 9,
+    "nome": "Fioritura del Sentimento",
+    "immagine": "img/ai7.jpeg",
+    "artista": "Francesco Prete",
+    "prezzo": "0.41670059343911103"
+  },
+  {
+    "id": 10,
+    "nome": "Il volo",
+    "immagine": "img/ai8.jpeg",
+    "artista": "Luca Cecchino",
+    "prezzo": "0.37215673689906814"
+  }
+]

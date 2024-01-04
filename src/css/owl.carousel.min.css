@@ -43,12 +43,22 @@
     -ms-transform: translate3d(0, 0, 0)
 }
 
+.card_box {
+    display: inline-block;
+    vertical-align: top; /* Assicura l'allineamento in alto */
+    margin-right: 15px; /* Aggiungi un margine destro tra le card_box */
+}
+
+
 .owl-carousel .owl-item {
+    display: inline-block;
+    float: none;
     min-height: 1px;
     float: left;
     -webkit-backface-visibility: hidden;
     -webkit-touch-callout: none
 }
+
 
 .owl-carousel .owl-item img {
     display: block;
@@ -64,6 +74,22 @@
 .owl-carousel.owl-loaded {
     display: block
 }
+.owl-carousel.slider_carousel .card_box {
+    width: 250px; /* Imposta la larghezza desiderata per ogni carta */
+    margin-right: 15px; /* Aggiunge uno spazio tra le carte */
+}
+
+.owl-carousel.slider_carousel .card_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.owl-carousel.slider_carousel .paint-image {
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    height: auto; /* Imposta l'altezza in base all'immagine originale */
+}
+
 
 .owl-carousel .owl-dot,
 .owl-carousel .owl-nav .owl-next,

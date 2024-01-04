@@ -2,42 +2,35 @@
 pragma solidity ^0.8.0;
 
 contract PaintContract {
-    struct Paint {
-        uint256 id;
-        string name;
-        string image;
-        string artist;
-        uint256 price;
-        bool isAvailable;
+    address public owner;
+    mapping(uint256 => address) public paintOwners;
+    mapping(uint256 => bool) public paintPurchased;
+
+    event PaintPurchased(address indexed buyer, uint256 indexed paintId);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can call this function");
+        _;
     }
-
-    mapping(uint256 => Paint) public paints;
-    uint256 public paintsCount;
-
-    event PaintPurchased(uint256 indexed paintId, address indexed buyer);
 
     constructor() {
-        addPaint("Distese stellate", "img/ai1.jpeg", "Alessandro Vibrante", 33527633954871);
-        // Aggiungi altri quadri se necessario
+        owner = msg.sender;
     }
 
-    function addPaint(
-        string memory name,
-        string memory image,
-        string memory artist,
-        uint256 price
-    ) public {
-        paintsCount++;
-        paints[paintsCount] = Paint(paintsCount, name, image, artist, price, true);
+    function purchasePaint(uint256 paintId) external {
+        require(!paintPurchased[paintId], "Paint already purchased");
+        
+        paintOwners[paintId] = msg.sender;
+        paintPurchased[paintId] = true;
+
+        emit PaintPurchased(msg.sender, paintId);
     }
 
-    function purchasePaint(uint256 paintId) public payable {
-        Paint storage paint = paints[paintId];
+    function getPaint(uint256 paintId) external view returns (address) {
+        return paintOwners[paintId];
+    }
 
-        require(paint.isAvailable, "This painting is not available");
-        require(msg.value == paint.price, "Incorrect payment amount");
-
-        paint.isAvailable = false;
-        emit PaintPurchased(paintId, msg.sender);
+    function setOwner(address newOwner) external onlyOwner {
+        owner = newOwner;
     }
 }
