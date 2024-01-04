@@ -9,17 +9,14 @@ App = {
             var paintsTemplate = $('#paintsTemplate');
 
             for (i = 0; i < data.length; i++) {
-             // Clona la card_box dal template
             var newCard = paintsTemplate.find('.card_box').clone();
 
-            // Aggiungi i dettagli del dipinto
             newCard.find('.paint-title').text(data[i].nome);
             newCard.find('.paint-image').attr('src', data[i].immagine);
             newCard.find('.artist-name').text(data[i].artista);
             newCard.find('.paint-price').text(data[i].prezzo);
             newCard.find('.btn-purchase').attr('data-id', data[i].id);
 
-            // Aggiungi la card_box clonata al carosello
             paintsRow.append(newCard);
             }
         });
