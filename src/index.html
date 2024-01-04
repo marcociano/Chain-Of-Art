@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=chrome">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chain Of Art</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.min.css">
-    <link rel="stylesheet" href="assets/css/rtl.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/rtl.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 
 </head>
 
@@ -19,7 +19,7 @@
     <div class="nav-main">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <img src="assets/img/logopng.png" style="height: 150px; width: 150px;">
+                <img src="img/logopng.png" style="height: 150px; width: 150px;">
                 <a class="navbar-brand font-weight-bold" href="index.html">Chain Of Art - Landing page</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
         </div>
     </div>
     <!--end:Navigation -->
-    <main role="main">
+
         <section class="intro">
 
             <div class="container">
@@ -56,9 +56,11 @@
                 <div class="row d-flex  align-items-start">
                     <div class="col-md-11">
                         <h1 class="display-3">
-                            <span style="color: #DBB962;">Chain of Art</span> : l'Arte Digitale tra<br> <span style="color: hwb(200 25% 3%);"> Blockchain</span> &amp; <span style="color: #40B9F7;">Web 3.0</span>
+                            <span style="color: #DBB962;">Chain of Art</span> : l'Arte Digitale tra<br> <span
+                                style="color: hwb(200 25% 3%);"> Blockchain</span> &amp; <span
+                                style="color: #40B9F7;">Web 3.0</span>
                         </h1>
-                    
+
                     </div>
 
                 </div>
@@ -75,20 +77,26 @@
                     </div>
                     <div id="paintsRow" class="row">
                         <!--Load of paints-->
-                       </div>
-                    <div class="col-12" id="paints-template">
+                    </div>
+                    <div class="col-12" id="paintsTemplate" style="display: none;">
                         <div class="owl-carousel slider_carousel">
                             <div class="card_box">
-                                <img class="img-fluid w-100 paint-image" src="assets/img/ai1.jpeg" alt="">
+                                <img class="img-fluid w-100 paint-image" src="img/ai1.jpeg" alt="..">
                                 <div class="card_text">
                                     <h4 class="paint-title">Distese stellate</h4>
                                     <p class="artist-name">Alessandro Vibrante</p>
-                                    <p class="paint-price"><strong><em style="color: #40B9F7;">0,33527633954871 ETH</em></strong></p>
-                                    <button type="submit" class="btn btn-light font-weight-bold purchase" data-id="0" id="pulsante_sel_1" style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
-                                    <button class="btn btn-success" style="background-color: rgba(36, 110, 147, 0.5); color: black;" type="button" disabled>Acquistato</button>
+                                    <p class="paint-price"><strong><em style="color: #40B9F7;">0,33527633954871
+                                                ETH</em></strong></p>
+                                    <button type="button" class="btn btn-light font-weight-bold btn-purchase"
+                                        data-id="0"
+                                        style="background-color: rgba(64, 185, 247, 0.5); color: black;">Acquista</button>
+                                    <button class="btn btn-success"
+                                        style="background-color: rgba(36, 110, 147, 0.5); color: black;" type="button"
+                                        disabled>Acquistato</button>
                                 </div>
                             </div>
-                        <!--<div class="card_box">
+
+                            <!--<div class="card_box">
                                 <img class="img-fluid w-100" src="assets/img/img_ia_1.png" alt="">
                                 <div class="card_text">
                                     <h4>Sinfonia di Spirali Cosmiche</h4>
@@ -183,40 +191,12 @@
                 </div>
             </div>
         </div>
-    </main>
-</body>
-<br>
-<br>
-<section class="page-section" id="quadriacquistati">
-    <div class="container">
-        <h2 style="text-align: center; color: #DBB962;">Quadri Acquistati</h2>
-        <br>
-        <br>
-        <div class="row" id="quadriAcquistatiTabella">
-            <div class="col-12">
-                <table class="table table-image table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col" style="color: white;">ID</th>
-                            <th scope="col" style="color: white;">QUADRO</th>
-                            <th scope="col" style="color: white;">TITOLO QUADRO</th>
-                            <th scope="col" style="color: white;">PREZZO</th>
-                            <th scope="col" style="color: white;">ARTISTA</th>
-                            <th scope="col" style="color: white;">FONDAZIONE BENEFICIARIA</th>
-                        </tr>
-                    </thead>
-                    <tbody id="Paintbought">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script src="assets/js/main.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/app.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/web3.min.js"></script>
+<script src="js/truffle-contract.js"></script>
+
 <script>
     function slider_carouselInit() {
         $('.owl-carousel.slider_carousel').owlCarousel({
@@ -244,8 +224,33 @@
     }
     slider_carouselInit();
 </script>
-<footer>
-
-</footer>
+</body>
+<br>
+<br>
+<section class="page-section" id="quadriacquistati">
+    <div class="container">
+        <h2 style="text-align: center; color: #DBB962;">Quadri Acquistati</h2>
+        <br>
+        <br>
+        <div class="row" id="quadriAcquistatiTabella">
+            <div class="col-12">
+                <table class="table table-image table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="color: white;">ID</th>
+                            <th scope="col" style="color: white;">QUADRO</th>
+                            <th scope="col" style="color: white;">TITOLO QUADRO</th>
+                            <th scope="col" style="color: white;">PREZZO</th>
+                            <th scope="col" style="color: white;">ARTISTA</th>
+                            <th scope="col" style="color: white;">FONDAZIONE BENEFICIARIA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paintPurchased">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 
 </html>

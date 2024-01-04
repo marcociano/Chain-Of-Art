@@ -8505,7 +8505,7 @@
     ;(function (root, factory, undef) {
         if (typeof exports === "object") {
             // CommonJS
-            module.exports = exports = factory(require("./core"), require("./x64-core"));
+            module.exports = exports = factory(require("./core.js"), require("./x64-core.js"));
         }
         else if (typeof define === "function" && define.amd) {
             // AMD
@@ -8829,7 +8829,7 @@
     ;(function (root, factory) {
         if (typeof exports === "object") {
             // CommonJS
-            module.exports = exports = factory(require("./core"));
+            module.exports = exports = factory(require("./core.js"));
         }
         else if (typeof define === "function" && define.amd) {
             // AMD

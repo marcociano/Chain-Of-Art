@@ -3,16 +3,16 @@ App = {
     contracts: {},
 
     init: async function () {
-       $.getJSON('../paints.json', function(data){
+       $.getJSON('paints.json', function(data){
         var paintsRow = $('#paintsRow');
-        var paintsTemplate = $('#paints-template');
+        var paintsTemplate = $('#paintsTemplate');
 
         for(i=0; i< data.length; i++) {
             paintsTemplate.find('.paint-name').text(data[i].nome);
             paintsTemplate.find('paint-image').attr('src', data[i].immagine);
             paintsTemplate.find('.artist-name').text(data[i].artista);
             paintsTemplate.find('.paint-price').text(data[i].prezzo);
-            paintsTemplate.find('.purchase').attr('data-id', data[i].id);
+            paintsTemplate.find('.btn-purchase').attr('data-id', data[i].id);
 
             paintsRow.append(paintsTemplate.html());
         }
@@ -54,7 +54,7 @@ App = {
             // Set the provider for our contract
             App.contracts.PaintContract.setProvider(App.web3Provider);
 
-            loadPaint();
+            loadPaints();
         });
 
         return App.bindEvents();
@@ -63,10 +63,10 @@ App = {
 
 
     bindEvents: function () {
-        $(document).on('click', '.purchase', App.handlePurchase);
+        $(document).on('click', '.btn-purchase', App.handlePurchase);
     },
 
-    // Handle petition signing
+    // Handle paint purchase
     handlePurchase: function (event) {
         event.preventDefault();
 
@@ -85,7 +85,7 @@ App = {
                 PaintContract = instance;
 
                 // Execute sign as a transaction by sending account
-                return paintInstance.purchasePainting(paintId, { from: account });
+                return paintInstance.purchasePaint(paintId, { from: account });
             }).then(function (result) {
                 alert("Quadro acquistato");
                  window.location.reload();
@@ -109,12 +109,13 @@ $(function () {
     });
 });
 
-// Load all peints
-function loadPaint() {
+// Load all paints
+function loadPaints(active) {
     let paintInstance;
     var paintsRow = $('#paintsRow');
-    var paintsTemplate = $('#paints-template');
-
+    // Inizializza un nuovo template ad ogni iterazione
+    var paintsTemplate = $('#paintsemplate').clone();
+    
     web3.eth.getAccounts(function (error, accounts) {
         if (error) {
             console.log(error);
@@ -136,7 +137,7 @@ function loadPaint() {
                     var immagine = paint[2];
                     var artista = paint[3];
                     var prezzo = paint[4];
-                
+
                     paintsTemplate.find('.paint-name').text(nome);
                     paintsTemplate.find('.paint-image').attr('src', immagine);
                     paintsTemplate.find('.artist-name').text(artista);
@@ -147,7 +148,7 @@ function loadPaint() {
                         paintsTemplate.find('.btn-success').hide();
                         paintsTemplate.find('.purchase').attr('data-id', id);
                     } else {
-                        paintsTemplate.find('.purchase').hide();
+                        paintsTemplate.find('.btn-purchase').hide();
                         paintsTemplate.find('.btn-success').show();
                     }
 
@@ -159,7 +160,8 @@ function loadPaint() {
             console.log('Errore');
         });
     });
-}
+};
+
 /*
 // Load signed petitions for the current account
 function loadSignedPetitions() {

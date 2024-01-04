@@ -1,41 +1,43 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity ^0.8.0;
 
 contract PaintContract {
-    uint public counterPaints;
-    address public owner;
-    uint256 public nextPaintingId;
-    mapping(uint256 => uint256) public paintingIdToPrice;
-    mapping(uint256 => address) public paintingIdToOwner;
-
-    event PaintingPurchased(address indexed buyer, uint256 paintingId, uint256 price);
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Not the owner");
-        _;
+    struct Paint {
+        uint256 id;
+        string name;
+        string image;
+        string artist;
+        uint256 price;
+        bool isAvailable;
     }
+
+    mapping(uint256 => Paint) public paints;
+    uint256 public paintsCount;
+
+    event PaintPurchased(uint256 indexed paintId, address indexed buyer);
 
     constructor() {
-        counterPaints=0;
-        owner = msg.sender;
+        addPaint("Distese stellate", "img/ai1.jpeg", "Alessandro Vibrante", 33527633954871);
+        // Aggiungi altri quadri se necessario
     }
 
-    function mintPainting(uint256 price) external onlyOwner {
-        uint256 paintingId = nextPaintingId;
-        paintingIdToOwner[paintingId] = owner;
-        paintingIdToPrice[paintingId] = price;
-        nextPaintingId++;
-        emit PaintingPurchased(owner, paintingId, price);
+    function addPaint(
+        string memory name,
+        string memory image,
+        string memory artist,
+        uint256 price
+    ) public {
+        paintsCount++;
+        paints[paintsCount] = Paint(paintsCount, name, image, artist, price, true);
     }
 
-    function purchasePainting(uint256 paintingId) external payable {
-        require(paintingIdToOwner[paintingId] != address(0), "Painting ID does not exist");
-        require(msg.value == paintingIdToPrice[paintingId], "Incorrect payment amount");
+    function purchasePaint(uint256 paintId) public payable {
+        Paint storage paint = paints[paintId];
 
-        address payable seller = payable(paintingIdToOwner[paintingId]);
-        seller.transfer(msg.value);
+        require(paint.isAvailable, "This painting is not available");
+        require(msg.value == paint.price, "Incorrect payment amount");
 
-        paintingIdToOwner[paintingId] = msg.sender;
-        emit PaintingPurchased(msg.sender, paintingId, msg.value);
+        paint.isAvailable = false;
+        emit PaintPurchased(paintId, msg.sender);
     }
 }
