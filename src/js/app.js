@@ -9,15 +9,15 @@ App = {
             var paintsTemplate = $('#paintsTemplate');
 
             for (i = 0; i < data.length; i++) {
-            var newCard = paintsTemplate.find('.card_box').clone();
+                var newCard = paintsTemplate.find('.card_box').clone();
 
-            newCard.find('.paint-title').text(data[i].nome);
-            newCard.find('.paint-image').attr('src', data[i].immagine);
-            newCard.find('.artist-name').text(data[i].artista);
-            newCard.find('.paint-price').text(data[i].prezzo);
-            newCard.find('.btn-purchase').attr('data-id', data[i].id);
+                newCard.find('.paint-title').text(data[i].nome);
+                newCard.find('.paint-image').attr('src', data[i].immagine);
+                newCard.find('.artist-name').text(data[i].artista);
+                newCard.find('.paint-price').text(data[i].prezzo);
+                newCard.find('.btn-purchase').attr('data-id', data[i].id);
 
-            paintsRow.append(newCard);
+                paintsRow.append(newCard);
             }
         });
         return await App.initWeb3();
@@ -91,21 +91,25 @@ App = {
 
     handlePurchase: function (event) {
         event.preventDefault();
-    
+
         var paintId = parseInt($(event.target).data('id'));
-    
+
         var paintInstance;
-    
+
         web3.eth.getAccounts(function (error, accounts) {
             if (error) {
                 console.log(error);
             }
-    
+
             var account = accounts[0];
             App.contracts.PaintContract.deployed().then(function (instance) {
                 paintInstance = instance;
-    
-                return paintInstance.purchasePaint(paintId, { from: account });
+
+                // Recupera il prezzo del quadro
+                return paintInstance.paintPrices(paintId).call();
+            }).then(function (paintPrice) {
+                // Esegui la funzione di acquisto con il prezzo corretto
+                return paintInstance.purchasePaint(paintId, { from: account, value: paintPrice });
             }).then(function (result) {
                 return App.markPurchased(paintId);  // Passa l'ID del quadro
             }).catch(function (err) {
@@ -114,7 +118,7 @@ App = {
         });
     }
 };
-    
+
 
 $(function () {
     $(window).load(function () {

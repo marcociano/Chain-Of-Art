@@ -5,6 +5,8 @@ contract PaintContract {
     address public owner;
     mapping(uint256 => address) public paintOwners;
     mapping(uint256 => bool) public paintPurchased;
+    //Mapping per convertire i prezzi
+    mapping(uint256 => uint256) public paintPrices;
 
     event PaintPurchased(address indexed buyer, uint256 indexed paintId);
 
@@ -17,9 +19,15 @@ contract PaintContract {
         owner = msg.sender;
     }
 
-    function purchasePaint(uint256 paintId) external {
+    //Imposta il prezzo
+    function setPaintPrice(uint256 paintId, uint256 price) external onlyOwner {
+        paintPrices[paintId] = price;
+    }
+
+    function purchasePaint(uint256 paintId) external payable {
         require(!paintPurchased[paintId], "Paint already purchased");
-        
+        require(msg.value >= paintPrices[paintId], "Not enough Ether sent");
+
         paintOwners[paintId] = msg.sender;
         paintPurchased[paintId] = true;
 
