@@ -11,7 +11,7 @@ contract PaintContract {
     event PaintPurchased(address indexed buyer, uint256 indexed paintId);
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can call this function");
+       require(msg.sender == owner, "Only the owner can call this function");
         _;
     }
 
