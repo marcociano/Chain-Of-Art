@@ -14,11 +14,5 @@
   "license": "ISC",
   "devDependencies": {
     "lite-server": "2.3"
-  },
-  "dependencies": {
-    "@truffle/contract": "^4.6.31",
-    "core-js": "^2.5.7",
-    "core.js": "^0.4.2",
-    "web3": "^4.3.0"
   }
 }

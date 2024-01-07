@@ -66,11 +66,11 @@ App = {
 
 
     bindEvents: function () {
-        $(document).on('click', '.btn-purchase', App.handlePurchase);
+        $('.paintsRow').on('click', '.btn-purchase', App.handlePurchase);
     },
 
     // Handle paint purchase
-    markPurchased: function (buyer, account) {
+    markPurchased: function () {
         var paintInstance;
 
         App.contracts.PaintContract.deployed().then(function (instance) {
@@ -86,7 +86,6 @@ App = {
             console.log(err.message);
         });
     },
-
 
 
     handlePurchase: function (event) {
