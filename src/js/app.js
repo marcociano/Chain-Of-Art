@@ -63,19 +63,27 @@ App = {
         return App.bindEvents();
     },
 
-    setPaintPrices: function (paintInstance) {
-        // Imposta i prezzi dei quadri
+    setPaintPrices: async function (paintInstance) {
         try {
-            var data = $.getJSON('paints.json');
+            // Carica i dati in modo asincrono
+            var data = await $.getJSON('paints.json');
+    
             for (var i = 0; i < data.length; i++) {
-                var price = data[i].prezzo; 
-                paintInstance.setPaintPrice(i, web3.utils.toWei(price.toString(), 'ether'), { from: account });
+                var price = data[i].prezzo;
+    
+                // Verifica che il prezzo sia maggiore di zero e sia un numero valido
+                if (price <= 0 || isNaN(price)) {
+                    console.error("Prezzo non valido per il quadro con ID:", i);
+                    continue; // Salta questo quadro e continua con il successivo
+                }
+    
+                var priceInWei = web3.utils.toWei(price.toString(), 'ether');
+                await paintInstance.setPaintPrice(i, priceInWei, { from: account });
             }
         } catch (err) {
-            console.log(err.message);
+            console.error("Errore nel caricamento dei dati o nella conversione: ", err.message);
         }
     },
-    
     
 
     bindEvents: function () {
