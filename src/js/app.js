@@ -23,6 +23,21 @@ App = {
         
     },
 
+    listenForEvents: function () {
+        App.contracts.PaintContract.deployed().then(function (instance) {
+            instance.PaintPurchased({}, {
+                fromBlock: 0,
+                toBlock: 'latest',
+            }).watch(function (error, event) {
+                console.log("evento catturato", event);
+                // Aggiorna la tabella degli acquisti qui
+                App.updatePurchasedTable(event.args.paintId, event.args.buyer);
+            });
+        }).catch(function (err) {
+            console.error(err);
+        });
+    },
+
     initWeb3: async function () {
         // Modern dapp browsers...
         if (window.ethereum) {
@@ -57,6 +72,9 @@ App = {
             // Set the provider for our contract
             App.contracts.PaintContract.setProvider(App.web3Provider);
            
+            // Ascolta gli eventi dopo l'inizializzazione del contratto
+            App.listenForEvents();
+
             return App.markPurchased();
         });
 
@@ -160,6 +178,8 @@ App = {
             });
         });
     }
+
+
       
 };
 
