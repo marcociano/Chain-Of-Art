@@ -22,6 +22,21 @@ App = {
         return App.initWeb3();
     },
 
+    listenForEvents: function () {
+        App.contracts.PaintContract.deployed().then(function (instance) {
+            instance.PaintPurchased({}, {
+                fromBlock: 0,
+                toBlock: 'latest',
+            }).watch(function (error, event) {
+                console.log("evento catturato", event);
+                // Aggiorna la tabella degli acquisti qui
+                App.updatePurchasedTable(event.args.paintId, event.args.buyer);
+            });
+        }).catch(function (err) {
+            console.error(err);
+        });
+    },
+
     initWeb3: async function () {
         // Modern dapp browsers...
         if (window.ethereum) {

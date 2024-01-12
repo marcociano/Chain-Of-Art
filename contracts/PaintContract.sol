@@ -1,5 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
+/*All'interno di questo smart contract sono inseriti i seguenti design pattern:
+ * n°1 Checks-Effects-Interactions Pattern -> stabilisce la sequenza delle operazioni secondo l'ordine check(attuare controlli per verificare le condizioni necessarie), effects (applicazione), interactions(gestite le interazioni).
+ * n°2 Owner Pattern -> Garantisce che solo il proprietario esegua operazioni "critiche".
+ * n°3 Emergency Stop -> Sospende temporaneamente l'esecuzione in caso di emergenza.
+ * n°4 Reentrancy Guard Pattern -> Protegge dagli attacchi di reentrancy.
+ * n°5 Time-Dependent Restrictions Pattern -> Consente di applicare restrizioni basate sul tempo.
+ */
+
 
 contract PaintContract {
     address public owner;
@@ -10,6 +18,13 @@ contract PaintContract {
 
     event PaintPurchased(uint256 indexed paintId, address indexed buyer, uint256 price);
 
+    constructor() {
+        owner = msg.sender;
+        //Inizializzazione del Time-Dependent Restrictions Pattern
+        //contractStartTime = block.timestamp + 1 days; 
+    }
+
+    // Design Pattern n°2: Owner Pattern
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the owner can call this function");
         _;
