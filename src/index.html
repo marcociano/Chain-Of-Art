@@ -133,10 +133,14 @@
 <br>
 <section class="page-section" id="quadriacquistati">
     <div class="container">
-        <h2 style="text-align: center; color: #DBB962;">Quadri Acquistati</h2>
-        <br>
-        <br>
-        <div class="row" id="quadriAcquistatiTabella">
+        <div class="text-center">
+            <h2 style="text-align: center; color: #DBB962;">Quadri Acquistati</h2>
+            <div id="emptyImage" style="display: none; text-align: center;">
+                <img src="img/noPaintPurchased.png" alt="Immagine vuota" style="width: 500px; height: 500px;">
+                <h2 class="section-heading text-uppercase">Non hai acquistato alcun quadro</h2>
+            </div>
+        </div>
+        <div class="row" id="paintPurchasedTable">
             <div class="col-12">
                 <table class="table table-image table-hover">
                     <thead>
@@ -144,8 +148,8 @@
                             <th scope="col" style="color: white;">ID</th>
                             <th scope="col" style="color: white;">QUADRO</th>
                             <th scope="col" style="color: white;">TITOLO QUADRO</th>
-                            <th scope="col" style="color: white;">PREZZO</th>
                             <th scope="col" style="color: white;">ARTISTA</th>
+                            <th scope="col" style="color: white;">PREZZO</th>
                             <th scope="col" style="color: white;">STATO</th>
                         </tr>
                     </thead>

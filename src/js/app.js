@@ -22,20 +22,6 @@ App = {
         return App.initWeb3();
     },
 
-    listenForEvents: function () {
-        App.contracts.PaintContract.deployed().then(function (instance) {
-            instance.PaintPurchased({}, {
-                fromBlock: 0,
-                toBlock: 'latest',
-            }).watch(function (error, event) {
-                console.log("evento catturato", event);
-                // Aggiorna la tabella degli acquisti qui
-                App.updatePurchasedTable(event.args.paintId, event.args.buyer);
-            });
-        }).catch(function (err) {
-            console.error(err);
-        });
-    },
 
     initWeb3: async function () {
         // Modern dapp browsers...
@@ -71,32 +57,17 @@ App = {
             // Set the provider for our contract
             App.contracts.PaintContract.setProvider(App.web3Provider);
 
-            return App.setPaintPrices();
+            App.updatePurchasedTable();
         });
 
         return App.bindEvents();
     },
 
-    setPaintPrices: function () {
-        try {
-          App.contracts.PaintContract.deployed().then(function (paintInstance) {
-            var data = $.getJSON('paints.json');
-            for (var i = 0; i < data.length; i++) {
-              var price = data[i].prezzo;
-              paintInstance.setPaintPrice(data[i].id, web3.utils.toWei(price.toString(), 'ether'), { from: account });
-            }
-          });
-        } catch (err) {
-          console.log(err.message);
-        }
-      },
-
-
 
     bindEvents: function () {
         $(document).on('click', '.btn-purchase', App.handlePurchase);
     },
-
+/*
     markPurchased: function () {
         var paintInstance;
         App.contracts.PaintContract.deployed().then(function (instance) {
@@ -113,8 +84,21 @@ App = {
           console.log(err.message);
         });
       },
-      
+   */   
 
+      setPaintPrices: function () {
+        try {
+          App.contracts.PaintContract.deployed().then(function (paintInstance) {
+            var data = $.getJSON('paints.json');
+            for (var i = 0; i < data.length; i++) {
+              var price = data[i].prezzo;
+              paintInstance.setPaintPrice(data[i].id, web3.toWei(price.toString(), 'ether'), { from: account });
+            }
+          });
+        } catch (err) {
+          console.log(err.message);
+        }
+      },
 
       handlePurchase: function (event) {
         event.preventDefault();
@@ -131,9 +115,7 @@ App = {
           App.contracts.PaintContract.deployed().then(function (instance) {
             paintInstance = instance;
       
-            return paintInstance.paintPrices.call(paintId);
-          }).then(function (paintPrice) {
-            return paintInstance.buyPainting(paintId, { from: account, value: paintPrice});
+            return paintInstance.buyPaint(paintId, { from: account});
           }).then(function (result) {
             alert("Quadro Acquistato");
       
@@ -148,33 +130,54 @@ App = {
       
 
     updatePurchasedTable: function (paintId) {
-        var paintInstance;
-        App.contracts.PaintContract.deployed().then(function(instance){
+        let paintInstance;
+        var paintPurchased = $("#paintPurchased");
+        var paintPurchasedTable = $("#paintPurchasedTable");
+        var emptyImage = $("#emptyImage");
+
+        web3.eth.getAccounts(function (error, accounts){
+          if (error){
+            console.log(error);
+          }
+
+          App.contracts.PaintContract.deployed().then(async function (instance){
             paintInstance = instance;
-    
-            // Ottieni le informazioni del quadro appena acquistato
-            return paintInstance.getPaintDetails(paintId);
-        }).then(function(result){
-            var buyer = result[0];
-            var price = result[1];
-            var isPurchased = result[2];
-    
-            // Aggiorna la tabella con le informazioni del quadro appena acquistato
-            var purchasedTable = $('#paintPurchased');
-            var newRow = '<tr><th scope="row">' + paintId +
-                '</th><td><img src="' + $('.card_box').eq(paintId).find('.paint-image').attr('src') +
-                '" class="img-fluid w-50"></td><td>' + $('.card_box').eq(paintId).find('.paint-title').text() +
-                '</td><td>' + price +
-                '</td><td>' + $('.card_box').eq(paintId).find('.artist-name').text() +
-                '</td><td>' + (isPurchased ? 'Acquistato' : 'Non acquistato') +
-                '</td></tr>';
-    
-            purchasedTable.append(newRow);
+
+            var account = accounts[0];
+
+            const purchasedPaintIds = await paintInstance.getBuyers(account);
+
+            if(purchasedPaintIds.length === 0){
+              paintPurchased.hide();
+              paintPurchasedTable.hide();
+              emptyImage.hide();
+              return;
+            }
+
+            for (var i=0; i< purchasedPaintIds.length; i++){
+              const paintId = purchasedPaintIds[i].toNumber();
+              const paintDetails = await paintInstance.getPaintDetails(paintId);
+
+              var id = paintDetails[0];
+              var title = paintDetails[1];
+              var img = paintDetails[2];
+              var artist= paintDetails[3];
+              var price = paintDetails[4];
+              var status = paintDetails[5];
+
+              var change = status ? "DISPONIBILE" : "ACQUISTATO";
+
+              var paintsTemplate = "<tr><th>" + id + "</th><td><img src='" + img + "' alt='" + title + "' style='width: 300px; height: 200px; '></td><td>" + title + "</td><td>" + artist + "</td><td>" + price + "</td><td>" + change + "</td><td>";
+
+              paintPurchased.append(paintsTemplate);
+            }
         }).catch(function(err){
             console.log(err.message);
+            console.log('Errore')
         });
-    },
-};
+    });
+  }
+}
 
 
 $(function () {

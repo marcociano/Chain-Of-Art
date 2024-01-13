@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "jquery": "^3.7.1",
+    "solc": "^0.8.23-fixed",
     "web3": "^4.3.0"
   }
 }

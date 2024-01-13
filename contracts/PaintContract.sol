@@ -10,60 +10,111 @@ pragma solidity ^0.8.0;
 
 
 contract PaintContract {
-    address public owner;
-    mapping(uint256 => address) public paintOwners;
-    mapping(uint256 => uint256) public paintPrices;
-    mapping(uint256 => bool) public paintPurchased;
-    uint256 public totalPaintings;
+    uint public counterPaints;
+    struct Paint {
+        uint id;
+        string title;
+        string img;
+        string artist;
+        uint price;
+        bool status;
+    }
 
-    event PaintPurchased(uint256 indexed paintId, address indexed buyer, uint256 price);
+    mapping (uint => Paint) public paints;
+    mapping (address => uint[]) public purchasedPaints;
+  
+
+    event purchasedPaint(address indexed buyer, uint indexed paintId);
 
     constructor() {
-        owner = msg.sender;
+       counterPaints = 0;
         //Inizializzazione del Time-Dependent Restrictions Pattern
         //contractStartTime = block.timestamp + 1 days; 
     }
 
-    // Design Pattern n°2: Owner Pattern
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can call this function");
-        _;
+
+
+    function createPaint(
+        uint id,
+        string memory title,
+        string memory img,
+        string memory artist,
+        uint price 
+    ) public {
+        require(paints[id].id == 0, "Quadro con lo stesso ID gia' esistente");
+
+        paints[id] = Paint(
+            id,
+            title,
+            img,
+            artist,
+            price,
+            true
+        );
+        counterPaints++;
     }
 
-    modifier onlyIfNotPurchased(uint256 paintId) {
-        require(!paintPurchased[paintId], "This paint has already been purchased");
-        _;
+    function getPaintDetails(uint paintId) public view returns (
+        uint id,
+        string memory title,
+        string memory img,
+        string memory artist,
+        uint price,
+        bool status 
+    ){
+        Paint storage paint = paints[paintId];
+        return (
+            paint.id,
+            paint.title,
+            paint.img,
+            paint.artist,
+            paint.price,
+            paint.status
+        );
     }
 
-    constructor() {
-        owner = msg.sender;
+    function buyPaint(uint paintId) public payable {
+        Paint storage paint = paints[paintId];
+        require(paint.status, "Il quadro non e' disponibile");
+
+        require(!purchasedSatus(msg.sender, paintId), "Hai gia' comprato questo quadro");
+
+        purchasedPaints[msg.sender].push(paintId);
+
+        emit purchasedPaint(msg.sender, paintId);
     }
 
-    function addPainting(uint256 price) external onlyOwner {
-        totalPaintings++;
-        paintPrices[totalPaintings] = price;
-    }
-
-    function buyPainting(uint256 paintId) external payable onlyIfNotPurchased(paintId) {
-        require(msg.value == paintPrices[paintId], "Incorrect payment amount");
-
-        paintOwners[paintId] = msg.sender;
-        paintPurchased[paintId] = true;
-
-        emit PaintPurchased(paintId, msg.sender, msg.value);
-    }
-
-    function getBuyers() external view returns (address[] memory, uint256[] memory, bool[] memory) {
-        address[] memory buyers = new address[](totalPaintings);
-        uint256[] memory prices = new uint256[](totalPaintings);
-        bool[] memory purchasedStatus = new bool[](totalPaintings);
-
-        for (uint256 i = 1; i <= totalPaintings; i++) {
-            buyers[i - 1] = paintOwners[i];
-            prices[i - 1] = paintPrices[i];
-            purchasedStatus[i - 1] = paintPurchased[i];
+    function purchasedSatus(address buyer, uint paintId) internal view returns (bool) {
+        uint[] storage purchasedIds = purchasedPaints[buyer];
+        for (uint i = 0; i< purchasedIds.length; i++){
+            if (purchasedIds[i] == paintId) {
+                return true;
+            }
         }
-
-        return (buyers, prices, purchasedStatus);
+        return false;
     }
+
+    function getAllPaintd() public view returns (Paint[] memory){
+        Paint[] memory result = new Paint[](counterPaints);
+        for(uint i = 0; i< counterPaints; i++){
+            result[i] = paints[i];
+        }
+        return result;
+    }
+
+    function getPurchasedPaintIds(address buyer) public view returns (uint[] memory){
+        uint[] memory purchasedIds = purchasedPaints[buyer];
+        return purchasedIds;
+    }
+
+    function getPurchasedPaints(address buyer) public view returns (Paint[] memory){
+        uint[] memory purchasedIds = purchasedPaints[buyer];
+        Paint[] memory purchasedPaintsArray = new Paint[](purchasedIds.length);
+
+        for(uint i= 0; i< purchasedIds.length; i++){
+            purchasedPaintsArray[i] = paints[purchasedIds[i]];
+        }
+        return purchasedPaintsArray;
+    }      
+    
 }
