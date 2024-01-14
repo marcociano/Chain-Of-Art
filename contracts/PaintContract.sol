@@ -12,7 +12,7 @@ contract PaintContract {
         string img;
         string artist;
         string price;
-        bool status;
+        bool isSold;
     }
 
     // Mappatura degli ID dei quadri con i loro dettagli
@@ -60,7 +60,7 @@ contract PaintContract {
             img,
             artist,
             price,
-            true
+            false
         );
         counterPaints++;
     }
@@ -72,7 +72,7 @@ contract PaintContract {
         string memory img,
         string memory artist,
         string memory price,
-        bool status 
+        bool isSold 
     ){
         Paint storage paint = paints[paintId];
         return (
@@ -81,7 +81,7 @@ contract PaintContract {
             paint.img,
             paint.artist,
             paint.price,
-            paint.status
+            paint.isSold
         );
     }
 
@@ -90,7 +90,7 @@ contract PaintContract {
         Paint storage paint = paints[paintId];
 
         // Verifica se il quadro è disponibile
-        require(paint.status, "Il quadro non e' disponibile");
+        require(!paint.isSold, "Il quadro non e' disponibile");
 
         // Verifica se l'utente ha già acquistato questo quadro
         require(!purchasedStatus(msg.sender, paintId), "Hai gia' comprato questo quadro");
@@ -98,9 +98,6 @@ contract PaintContract {
         // Aggiungi l'ID del quadro agli acquisti dell'utente
         purchasedPaints[msg.sender].push(paintId);
 
-        // Imposta lo stato del quadro come non disponibile
-        paint.status = false;
-        
         // Emetti l'evento per registrare l'acquisto
         emit purchasedPaint(msg.sender, paintId);
     }

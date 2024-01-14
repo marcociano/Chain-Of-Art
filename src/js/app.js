@@ -98,22 +98,26 @@ App = {
         alert("Quadro Acquistato");
         window.location.reload();
       }).catch(function (err) {
-        alert("Errore nell'acquisto")
-        console.error(err.message);
+        if (err.message.includes("Hai gia' comprato questo quadro")) {
+          alert("Transazione Fallita: Hai gia' acquistato questo quadro");
+        } else {
+          alert("Transazione Fallita");
+          console.log(err.message);
+        }
       });
     });
   }
 }
 
 
-$(function () {
-  $(window).load(function () {
-    App.init();
+$(function() {
+    $(window).load(function () {
+      App.init();
+    });
   });
-});
 
 
-function updatePurchasedTable() {
+  function updatePurchasedTable() {
   let paintInstance;
   var paintPurchased = $("#paintPurchased");
   var paintPurchasedTable = $("#paintPurchasedTable");
@@ -147,11 +151,11 @@ function updatePurchasedTable() {
         var img = paintDetails[2];
         var artist = paintDetails[3];
         var price = paintDetails[4];
-        var status = paintDetails[5];
+        var isSold = paintDetails[5];
 
-        var change = status ? "DISPONIBILE" : "ACQUISTATO";
+        var status = isSold ? "DISPONIBILE" : "ACQUISTATO";
 
-        var paintsTemplate = "<tr><th>" + id + "</th><td><img src='" + img + "' alt='" + title + "' style='width: 300px; height: 200px; '></td><td>" + title + "</td><td>" + artist + "</td><td>" + price + "</td><td>" + change + "</td><td>";
+        var paintsTemplate = "<tr><th style='color: #DBB962'>" + id + "</th><td><img src='" + img + "' alt='" + title + "' style='width: 300px; height: 300px; '></td><td style='color: #DBB962'>" + title + "</td><td style='color: #DBB962'>" + artist + "</td><td style='color: #DBB962'>" + price + " ETH" + "</td><td style='color: #DBB962'>" + status;
 
         paintPurchased.append(paintsTemplate);
       }
