@@ -78,9 +78,9 @@
 						"type": "string"
 					},
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "price",
-						"type": "string"
+						"type": "uint256"
 					}
 				],
 				"name": "createPaint",
@@ -90,7 +90,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getAllPaintd",
+				"name": "getAllPaint",
 				"outputs": [
 					{
 						"components": [
@@ -115,9 +115,9 @@
 								"type": "string"
 							},
 							{
-								"internalType": "string",
+								"internalType": "uint256",
 								"name": "price",
-								"type": "string"
+								"type": "uint256"
 							},
 							{
 								"internalType": "bool",
@@ -164,9 +164,9 @@
 						"type": "string"
 					},
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "price",
-						"type": "string"
+						"type": "uint256"
 					},
 					{
 						"internalType": "bool",
@@ -229,9 +229,9 @@
 								"type": "string"
 							},
 							{
-								"internalType": "string",
+								"internalType": "uint256",
 								"name": "price",
-								"type": "string"
+								"type": "uint256"
 							},
 							{
 								"internalType": "bool",
@@ -278,9 +278,9 @@
 						"type": "string"
 					},
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "price",
-						"type": "string"
+						"type": "uint256"
 					},
 					{
 						"internalType": "bool",
@@ -344,11 +344,11 @@
 	},
 	"sources": {
 		"contracts/PaintContract.sol": {
-			"keccak256": "0x07754ea6a11e1403ce8e9c77b89d89839249786b3b5590b4739d11655d619c32",
+			"keccak256": "0xe3f97e67d96691e16117bf54396ccdacc48bb37670c716b4b56fb8a196791789",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c9ba5b15d3eb6213aa56781a1ca4e5f862c5834feb55fdc2a70c352a8f70046a",
-				"dweb:/ipfs/QmQJT7pGJXoppooCU2Q8R74chggRNZcKRR2Dagrd7VN6Dg"
+				"bzz-raw://ec0ee83cfe19d7a8b8747b80ec3ef1dd15797d96d7fe82198c417b2a41be17ca",
+				"dweb:/ipfs/QmVmgGLir7i9jDieUs8YXFvXeyGr5ScknQSEJM5xho55KV"
 			]
 		}
 	},
