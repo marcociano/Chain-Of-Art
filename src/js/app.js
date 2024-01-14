@@ -66,25 +66,6 @@ App = {
   bindEvents: function () {
     $(document).on('click', '.btn-purchase', App.handlePurchase);
   },
-  /*
-      markPurchased: function () {
-          var paintInstance;
-          App.contracts.PaintContract.deployed().then(function (instance) {
-            paintInstance = instance;
-        
-            return paintInstance.getBuyers();
-          }).then(function (buyers) {
-            for (var i = 0; i < buyers.length; i++) {
-              if (buyers[i] !== '0x0000000000000000000000000000000000000000') {
-                $('.card_box').eq(i).find('button').text('Acquistato').attr('disabled', true);
-              }
-            }
-          }).catch(function (err) {
-            console.log(err.message);
-          });
-        },
-     */
-
 
 
   handlePurchase: function (event) {
