@@ -49,7 +49,7 @@ contract('PaintContract', (accounts) => {
         await paintContract.createPaint(paintId, "Test Paint", "Test Image", "Test Artist", "0.18");
 
         try {
-          await petitionContract.createPaint(paintId, "Duplicate Paint", "Duplicate Image",  "Duplicate Artist", "0.18");
+          await paintContract.createPaint(paintId, "Duplicate Paint", "Duplicate Image",  "Duplicate Artist", "0.18");
           assert.fail("Should have thrown an error");
         } catch (error) {
           assert(error.message.includes("Quadro con lo stesso ID gia' esistente"), "Wrong error message");
