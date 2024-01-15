@@ -22,7 +22,7 @@ contract('PaintContract', (accounts) => {
         assert.equal(paintDetails.img, img, 'Image not set correctly');
         assert.equal(paintDetails.artist, artist, 'Artist not set correctly');
         assert.equal(paintDetails.price, price, 'Price not set correctly');
-        assert.equal(paintDetails.status, true, 'Status not set correctly');
+        assert.equal(paintDetails.isSold, false, 'isSold not set correctly');
     });
 
     it('should allow buying a paint', async () => {
@@ -57,4 +57,5 @@ contract('PaintContract', (accounts) => {
       });
     
     });
+    
     
