@@ -84,10 +84,10 @@ App = {
         paintInstance = instance;
 
         var gasLimit = 200000;
-        // Ottieni il prezzo del quadro dal DOM (sostituisci con la tua logica)
+        // Retrive paint'sprice from DOM
         var paintPrice = parseFloat($(event.target).closest('.card_box').find('.paint-price').text());
 
-        // Converti il prezzo in wei (1 ether = 10^18 wei)
+        // Convert the price in Wei (1 ether = 10^18 wei)
         var priceInWei = web3.toWei(paintPrice.toString(), 'ether');
 
         console.log("Attempting to buy paint with ID: ", paintId);
@@ -153,7 +153,7 @@ $(function() {
         var price = paintDetails[4];
         var isSold = paintDetails[5];
 
-        var status = isSold ? "DISPONIBILE" : "ACQUISTATO";
+        var status = isSold ? "ACQUISTATO" : "DISPONIBILE";
 
         var paintsTemplate = "<tr><th style='color: #DBB962'>" + id + "</th><td><img src='" + img + "' alt='" + title + "' style='width: 300px; height: 300px; '></td><td style='color: #DBB962'>" + title + "</td><td style='color: #DBB962'>" + artist + "</td><td style='color: #DBB962'>" + price + " ETH" + "</td><td style='color: #DBB962'>" + status;
 
