@@ -2,7 +2,7 @@ Chain of Art - dApp
 Prerequisiti
 Prima di iniziare, assicurati di avere installato i seguenti strumenti:
 
-Node.js e NPM: Puoi scaricare Node.js da qui.
+Node.js e NPM: Puoi scaricare Node.js da <a src=https://nodejs.org/en>qui</a>.
 Truffle: Trovi ulteriori informazioni e l'installazione su GitHub.
 Ganache: Scarica l'applicazione GUI da qui.
 Metamask: Installa l'estensione per il tuo browser da qui.
