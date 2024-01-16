@@ -2,10 +2,10 @@ Chain of Art - dApp
 Prerequisiti
 Prima di iniziare, assicurati di avere installato i seguenti strumenti:
 
-Node.js e NPM: Puoi scaricare Node.js da <a src=https://nodejs.org/en>qui</a>.
+Node.js e NPM: Puoi scaricare Node.js da qui: https://nodejs.org/en.
 Truffle: Trovi ulteriori informazioni e l'installazione su GitHub.
-Ganache: Scarica l'applicazione GUI da qui.
-Metamask: Installa l'estensione per il tuo browser da qui.
+Ganache: Scarica l'applicazione GUI da qui: https://trufflesuite.com/ganache/.
+Metamask: Installa l'estensione per il tuo browser da qui: https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=it
 Passo 1: Clonare il Progetto
 Per iniziare, clona il repository del progetto eseguendo il seguente comando:
 
