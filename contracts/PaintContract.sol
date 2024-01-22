@@ -31,58 +31,16 @@ contract PaintContract {
     }
 
     function loadPaints() public {
-        createPaint(
-            0,
-            "Distese Stellate",
-            "img/ai1.jpeg",
-            "Alessandro Vibrante",
-            "0.33"
-        );
-        createPaint(
-            1,
-            "Sinfonia di Spirali Cosmiche",
-            "img/img_ia_1.png",
-            "Marco Tessitore",
-            "0.43"
-        );
+        createPaint(0, "Distese Stellate", "img/ai1.jpeg", "Alessandro Vibrante", "0.33");
+        createPaint(1, "Sinfonia di Spirali Cosmiche", "img/img_ia_1.png", "Marco Tessitore", "0.43");
         createPaint(2, "Il giorno", "img/ai2.jpeg", "Vittorio Formale", "0.26");
-        createPaint(
-            3,
-            "Equilibrio Astratto",
-            "img/ai3.jpeg",
-            "Silvio Baratta",
-            "0.47"
-        );
+        createPaint(3, "Equilibrio Astratto", "img/ai3.jpeg", "Silvio Baratta", "0.47");
         createPaint(4, "L'Eden", "img/ai4.jpeg", "Gioele Patternato", "0.22");
-        createPaint(
-            5,
-            "Alba dorata nel paese",
-            "img/img_ia_2.png",
-            "Leonardo Luminoso",
-            "0.14"
-        );
-        createPaint(
-            6,
-            "Tempesta Solare sulle Cime Eterne",
-            "img/img_ia_3.png",
-            "Flavio Sogno",
-            "0.15"
-        );
-        createPaint(
-            7,
-            "Allegria del Villaggio",
-            "img/ai5.jpeg",
-            "Bruno Elementare",
-            "0.47"
-        );
+        createPaint(5, "Alba dorata nel paese", "img/img_ia_2.png", "Leonardo Luminoso", "0.14");
+        createPaint(6,"Tempesta Solare sulle Cime Eterne", "img/img_ia_3.png", "Flavio Sogno", "0.15");
+        createPaint(7, "Allegria del Villaggio", "img/ai5.jpeg", "Bruno Elementare", "0.47");
         createPaint(8, "Liberta'", "img/ai6.jpeg", "Angelo Romano", "0.47");
-        createPaint(
-            9,
-            "Fioritura del Sentimento",
-            "img/ai7.jpeg",
-            "Francesco Prete",
-            "0.41"
-        );
+        createPaint(9, "Fioritura del Sentimento", "img/ai7.jpeg", "Francesco Prete", "0.41");
         createPaint(10, "Il volo", "img/ai8.jpeg", "Luca Cecchino", "0.37");
     }
 
